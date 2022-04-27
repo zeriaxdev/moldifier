@@ -6,7 +6,7 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "http://localhost:5000",
+      target: process.env.PUBLIC_URL || "http://0.0.0.0",
       changeOrigin: true,
     })
   );
