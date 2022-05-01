@@ -9,7 +9,7 @@ const ffmpeg = createFFmpeg({
   corePath: "https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js",
 });
 
-const gitRepo = "https://github.com/zeriaxdev/moldifier";
+const gitHub = "https://github.com/zeriaxdev";
 const publicUrl = "https://zeriax.com";
 
 function App() {
@@ -68,7 +68,7 @@ function App() {
             <div className="m-3">
               <a
                 className="text-5xl font-extrabold hover:underline hover:cursor-help"
-                href={gitRepo}
+                href={gitHub + "/moldifier"}
               >
                 moldifier
               </a>
@@ -90,7 +90,6 @@ function App() {
                   }}
                 />
               </div>
-
               <div className="grid grid-cols-2 gap-2">
                 <div className="m-2">
                   <h1 className="text-lg font-bold mb-1">video quality</h1>
@@ -128,10 +127,13 @@ function App() {
 
               <div className="mt-1">
                 <button
-                  className={`bg-green-400 text-green-900 font-bold p-2 px-3 rounded-xl transition-all 
-                            hover:bg-green-500 hover:text-green-100 hover:rounded-2xl hover:tracking-wider
-                            disabled:opacity-50 disabled:cursor-not-allowed disabled:transition-none 
-                            ${loading ? "hover:cursor-progress" : ""}`}
+                  className={`bg-green-400 text-green-900 font-bold p-2 px-3 rounded-xl transition-all ${
+                    video
+                      ? "hover:bg-green-500 hover:text-green-100 hover:rounded-2xl hover:tracking-wider"
+                      : ""
+                  }
+                            disabled:opacity-50 disabled:cursor-not-allowed disabled:static
+                            ${loading ? "cursor-progress" : ""}`}
                   onClick={moldify}
                   disabled={video ? false : true}
                 >
@@ -151,7 +153,7 @@ function App() {
                   <div>
                     <button
                       className={`mt-5 bg-transparent text-green-400 font-bold p-2 px-3 rounded-xl inline-flex
-                                border-green-400 border-2 border-opacity-50
+                                border-green-400 border-2
                               hover:bg-green-400 hover:text-green-900 transition-all place-items-center`}
                       onClick={() => {
                         const a = document.createElement("a");
@@ -171,7 +173,7 @@ function App() {
               ) : null}
             </div>
             <div className="flex justify-center mt-1">
-              <a href={gitRepo}>
+              <a href={gitHub}>
                 <FaGithub className="w-10 h-10 m-1 transition-all hover:text-white" />
               </a>
               <a href={publicUrl}>
