@@ -23,6 +23,7 @@ function App() {
   const load = async () => {
     await ffmpeg.load();
     setReady(true);
+    console.log("ffmpeg loaded!");
   };
 
   useEffect(() => {
