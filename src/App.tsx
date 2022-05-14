@@ -26,6 +26,17 @@ function App() {
     console.log("ffmpeg loaded!");
   };
 
+  const generateRandom = (timestamp: number | Date) => {
+    const alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let rand = "";
+    for (let i = 0; i < 10; i++) {
+      rand += alpha.charAt(Math.floor(Math.random() * alpha.length));
+    }
+
+    return `${timestamp + rand}`;
+  };
+
   useEffect(() => {
     if (ffmpeg.isLoaded()) {
       setReady(true);
@@ -160,8 +171,10 @@ function App() {
                         const a = document.createElement("a");
                         a.href = mold;
                         a.download =
-                          video.name.replace(".mp4", "MOLDY.mp4") ||
-                          "moldy_output.mp4";
+                          video.name.replace(
+                            ".mp4",
+                            `moldy${generateRandom(Date.now())}.mp4`
+                          ) || "moldy_output.mp4";
                         a.click();
                         a.remove();
                       }}
