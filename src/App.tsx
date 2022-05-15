@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SpinnerInfinity } from "spinners-react";
-import { FiDownloadCloud } from "react-icons/fi";
+import { FiDownloadCloud, FiExternalLink } from "react-icons/fi";
 
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import { FaGithub, FaGlobeAmericas } from "react-icons/fa";
@@ -12,7 +12,32 @@ const ffmpeg = createFFmpeg({
 const gitHub = "https://github.com/zeriaxdev";
 const publicUrl = "https://zeriax.com";
 
-function App() {
+const Support = ({ supportURL = "https://www.icrc.org/en/donate/ukraine" }) => {
+  return (
+    <a
+      className="inline-flex p-3 bg-green-400/10 hover:bg-green-400/20 hover:cursor-pointer rounded-xl transition-all"
+      href={supportURL}
+    >
+      <div className="mr-3 self-center">
+        <svg
+          width="2em"
+          height="1.5em"
+          viewBox="0 0 301 201"
+          className="rounded-md"
+        >
+          <g fill="none">
+            <path fill="#005BBB" d="M.5.5h300v200H.5z"></path>
+            <path fill="#FFD500" d="M.5 100.5h300v100H.5z"></path>
+          </g>
+        </svg>
+      </div>
+      <p>help the Ukrainian people</p>
+      <FiExternalLink className="self-center ml-2" />
+    </a>
+  );
+};
+
+const App = () => {
   const [ready, setReady] = useState(false);
   const [video, setVideo] = useState<File | any>();
   const [mold, setMold] = useState<any>();
@@ -102,6 +127,14 @@ function App() {
                   }}
                 />
               </div>
+              {/* 
+
+                  PLACE SUPPORT HERE
+
+              */}
+              {/* <div className="mt-2">
+                <Support />
+              </div> */}
               <div className="grid grid-cols-2 gap-2">
                 <div className="m-2">
                   <h1 className="text-lg font-bold mb-1">video quality</h1>
@@ -186,6 +219,9 @@ function App() {
                 </div>
               ) : null}
             </div>
+            <div>
+              <Support />
+            </div>
             <div className="flex justify-center mt-1">
               <a href={gitHub}>
                 <FaGithub className="w-10 h-10 m-1 transition-all hover:text-white" />
@@ -208,6 +244,6 @@ function App() {
       )}
     </div>
   );
-}
+};
 
 export default App;
